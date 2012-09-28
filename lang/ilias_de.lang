@@ -1,2 +1,16 @@
 <!-- language file start -->
+enable#:#Aktivieren
+enable_info#:#Hier können Sie das Round-Cube-Plugin aktivieren bzw. deaktivieren. Sollten die Systemanforderungen nicht erfüllt sein, wird sich das Plugin selbstständig deaktivieren.
 roundcube_inbox#:#Roundcube Posteingang 
+roundcube_settings#:#Roundcube Einstellungen
+url#:#URL zu Ihrer Roundcube-Installation
+url_info#:#Bitte geben Sie den absoluten HTTP-Pfad zu Ihrer Roundcube-Installation an (Beispiel: http://www.ilias.de/roundcube)
+auth_settings#:#Authentifizierung
+auth_settings_ilias#:#ILIAS Logindaten
+auth_settings_ilias_info#:#Falls gewählt, wird Ihr Benutzernamen und Passwort aus ILIAS für die Roundcube-Authentifizierung genutzt.
+auth_with_udf#:#Benutzerdefiniertes Feld
+auth_with_udf_info#:#Falls gewählt, können Sie im folgenden ein benutzedefiniertes Feld für die Roundcube-Authentifizierung wählen.
+auth_udf_field#:#Feld
+precondition_error#:#Systemanforderungen nicht erfüllt:
+mcrypt_module_missing#:#Bitte installieren/aktivieren sie das <b>mcrypt</b> Modul.
+url_not_connectable#:#Der Installation <b>%s</b> kann nicht erreicht werden. Bitte prüfen Sie den eingegebenen URL. 

@@ -1,2 +1,16 @@
 <!-- language file start -->
-roundcube_inbox#:#Roundcube Inbox 
+enable#:#Enable
+enable_info#:#Here you can switch the activation status of this plugin. If some system requirements are not given, the plugin remains inactive.
+roundcube_inbox#:#Roundcube Inbox
+roundcube_settings#:#Roundcube Settings
+url#:#URL to your Roundcube installation
+url_info#:#Please enter the absolute HTTP path to your Roundcube installation (e.g.: http://www.ilias.de/roundcube)
+auth_settings#:#Authentication Settings
+auth_settings_ilias#:#ILIAS Credentials
+auth_settings_ilias_info#:#If selected, your ILIAS login credentials (username and password) are used for the Roundcube authentication.
+auth_with_udf#:#Used user defined field
+auth_with_udf_info#:#If selected, you can select one of the user defined fields which should be used for for the Roundcube authentication.
+auth_udf_field#:#User Defined Field
+precondition_error#:#Missing Preconditions:
+mcrypt_module_missing#:#Please install/enable the <b>mcrypt</b> module.
+url_not_connectable#:#ILIAS could not connect to <b>%s</b>. Please check the entered URL.
