@@ -6,7 +6,6 @@ require_once 'Services/Form/classes/class.ilPropertyFormGUI.php';
 require_once 'Services/User/classes/class.ilUserDefinedFields.php';
 require_once 'Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/RoundcubeEmbed/interfaces/interface.RoundcubeConstants.php';
 
-
 class ilRoundcubeEmbedConfigGUI extends ilPluginConfigGUI implements RoundcubeConstants
 {
 	/**
@@ -19,6 +18,8 @@ class ilRoundcubeEmbedConfigGUI extends ilPluginConfigGUI implements RoundcubeCo
 	 */
 	public function performCommand($cmd)
 	{
+		$this->getPluginObject()->loadLanguageModule();
+
 		switch($cmd)
 		{
 			default:
@@ -46,15 +47,17 @@ class ilRoundcubeEmbedConfigGUI extends ilPluginConfigGUI implements RoundcubeCo
 		global $lng, $ilCtrl;
 
 		$this->form = new ilPropertyFormGUI();
-
 		$this->form->setFormAction($ilCtrl->getFormAction($this, 'saveSettings'));
-		$this->form->setTitle($this->getPluginObject()->txt('roundcube_settings'));
-
+		$this->form->setTitle($this->getPluginObject()->txt('settings'));
 		$this->form->addCommandButton('saveSettings', $lng->txt('save'));
 
 		$enable = new ilCheckboxInputGUI($this->getPluginObject()->txt('enable'), 'is_enabled');
 		$enable->setInfo($this->getPluginObject()->txt('enable_info'));
 		$this->form->addItem($enable);
+
+		$denug_mode = new ilCheckboxInputGUI($this->getPluginObject()->txt('debug_mode'), 'debug_mode');
+		$denug_mode->setInfo($this->getPluginObject()->txt('debug_mode_info'));
+		$this->form->addItem($denug_mode);
 
 		$url = new ilTextInputGUI($this->getPluginObject()->txt('url'), 'url');
 		$url->setRequired(true);
@@ -88,8 +91,7 @@ class ilRoundcubeEmbedConfigGUI extends ilPluginConfigGUI implements RoundcubeCo
 		}
 		else
 		{
-			$setting = new ilSetting('roundcubeembed');
-			$setting->set('auth_settings', self::AUTH_MODE_ILIAS_CREDENTIALS);
+			ilRoundcubeEmbedPlugin::getSettings()->set('auth_settings', self::AUTH_MODE_ILIAS_CREDENTIALS);
 		}
 
 		$this->form->addItem($auth_settings);
@@ -102,12 +104,14 @@ class ilRoundcubeEmbedConfigGUI extends ilPluginConfigGUI implements RoundcubeCo
 	{
 		$values = array();
 
-		$setting = new ilSetting('roundcubeembed');
-
-		$values['is_enabled']    = $setting->get('is_enabled', 0);
-		$values['url']           = $setting->get('url');
-		$values['auth_settings'] = !$setting->get('auth_udf_id') ? self::AUTH_MODE_ILIAS_CREDENTIALS : $setting->get('auth_settings');
-		$values['auth_udf_id']   = $setting->get('auth_udf_id');
+		$values['is_enabled']    = ilRoundcubeEmbedPlugin::getSettings()->get('is_enabled', 0);
+		$values['debug_mode']    = ilRoundcubeEmbedPlugin::getSettings()->get('debug_mode', 0);
+		$values['url']           = ilRoundcubeEmbedPlugin::getSettings()->get('url');
+		$values['auth_settings'] =
+			!ilRoundcubeEmbedPlugin::getSettings()->get('auth_udf_id') ?
+				self::AUTH_MODE_ILIAS_CREDENTIALS :
+				ilRoundcubeEmbedPlugin::getSettings()->get('auth_settings');
+		$values['auth_udf_id']   = ilRoundcubeEmbedPlugin::getSettings()->get('auth_udf_id');
 
 		return $values;
 	}
@@ -129,8 +133,7 @@ class ilRoundcubeEmbedConfigGUI extends ilPluginConfigGUI implements RoundcubeCo
 			{
 				ilUtil::sendFailure(sprintf($this->getPluginObject()->txt('url_not_connectable'), $values['url']));
 			}
-			$setting = new ilSetting('roundcubeembed');
-			$setting->set('is_enabled', 0);
+			ilRoundcubeEmbedPlugin::getSettings()->set('is_enabled', 0);
 			$this->form->getItemByPostVar('is_enabled')->setChecked(false);
 		}
 
@@ -149,20 +152,20 @@ class ilRoundcubeEmbedConfigGUI extends ilPluginConfigGUI implements RoundcubeCo
 		global $tpl, $lng;
 
 		$deactivate = false;
-		$setting    = new ilSetting('roundcubeembed');
 
 		$status = $this->handlePreconditions();
 		$this->initSettingsForm();
 		if($status && $this->form->checkInput())
 		{
-			$setting->set('is_enabled', $this->form->getInput('is_enabled'));
-			$setting->set('url', $this->form->getInput('url'));
-			$setting->set('auth_settings', $this->form->getInput('auth_settings'));
-			$setting->set('auth_udf_id', $this->form->getInput('auth_udf_id'));
+			ilRoundcubeEmbedPlugin::getSettings()->set('is_enabled', $this->form->getInput('is_enabled'));
+			ilRoundcubeEmbedPlugin::getSettings()->set('debug_mode', $this->form->getInput('debug_mode'));
+			ilRoundcubeEmbedPlugin::getSettings()->set('url', $this->form->getInput('url'));
+			ilRoundcubeEmbedPlugin::getSettings()->set('auth_settings', $this->form->getInput('auth_settings'));
+			ilRoundcubeEmbedPlugin::getSettings()->set('auth_udf_id', $this->form->getInput('auth_udf_id'));
 
 			if(!ilRoundcubeEmbedPlugin::isRoundcubeConnectable($this->form->getInput('url')))
 			{
-				ilUtil::sendFailure(sprintf($this->getPluginObject()->txt('url_not_connectable'), $setting->get('url')));
+				ilUtil::sendFailure(sprintf($this->getPluginObject()->txt('url_not_connectable'), ilRoundcubeEmbedPlugin::getSettings()->get('url')));
 				$deactivate = true;
 			}
 			else
@@ -177,7 +180,7 @@ class ilRoundcubeEmbedConfigGUI extends ilPluginConfigGUI implements RoundcubeCo
 
 		if($deactivate)
 		{
-			$setting->set('is_enabled', 0);
+			ilRoundcubeEmbedPlugin::getSettings()->set('is_enabled', 0);
 			$_POST['is_enabled'] = 0;
 		}
 
@@ -206,8 +209,7 @@ class ilRoundcubeEmbedConfigGUI extends ilPluginConfigGUI implements RoundcubeCo
 
 		if(count($messages))
 		{
-			$setting = new ilSetting('roundcubeembed');
-			$setting->set('is_enabled', 0);
+			ilRoundcubeEmbedPlugin::getSettings()->set('is_enabled', 0);
 
 			$message = $this->getPluginObject()->txt('precondition_error') . '<br /><ul>' . implode('\n', $messages) . '</ul>';
 

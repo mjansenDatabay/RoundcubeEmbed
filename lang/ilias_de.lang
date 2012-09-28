@@ -1,16 +1,19 @@
 <!-- language file start -->
 enable#:#Aktivieren
-enable_info#:#Hier können Sie das Round-Cube-Plugin aktivieren bzw. deaktivieren. Sollten die Systemanforderungen nicht erfüllt sein, wird sich das Plugin selbstständig deaktivieren.
+enable_info#:#Hier können Sie das Roundcube-Plugin aktivieren bzw. deaktivieren. Sollten die Systemanforderungen nicht erfüllt sein, wird sich das Plugin selbstständig deaktivieren.
 roundcube_inbox#:#Roundcube Posteingang 
-roundcube_settings#:#Roundcube Einstellungen
+settings#:#Einstellungen
 url#:#URL zu Ihrer Roundcube-Installation
-url_info#:#Bitte geben Sie den absoluten HTTP-Pfad zu Ihrer Roundcube-Installation an (Beispiel: http://www.ilias.de/roundcube)
+url_info#:#Bitte geben Sie den absoluten HTTP-Pfad zu Ihrer Roundcube-Installation an (Beispiel: http://www.ilias.de/roundcube). <span style="color:red">Aktuell muss die Roundcube-Installation unter der selben Domain erreichbar sein wie Ihre ILIAS-Installation.</span>
 auth_settings#:#Authentifizierung
 auth_settings_ilias#:#ILIAS Logindaten
-auth_settings_ilias_info#:#Falls gewählt, wird Ihr Benutzernamen und Passwort aus ILIAS für die Roundcube-Authentifizierung genutzt.
+auth_settings_ilias_info#:#Falls gewählt, wird der jeweilige Benutzernamen und das Passwort eines ILIAS-Benutzers auch für die Roundcube-Authentifizierung genutzt.
 auth_with_udf#:#Benutzerdefiniertes Feld
-auth_with_udf_info#:#Falls gewählt, können Sie im folgenden ein benutzedefiniertes Feld für die Roundcube-Authentifizierung wählen.
+auth_with_udf_info#:#Falls gewählt, können Sie im folgenden Auswahlfeld ein Benutzedefiniertes Feld für die Roundcube-Authentifizierung wählen. Bitte beachten Sie, dass Sie das hier gewählte Feld in der Administration der Benutzerkonten nicht löschen, da ein der Single Sign-on zu Roundcube ansonsten fehlschlagen wird.
 auth_udf_field#:#Feld
 precondition_error#:#Systemanforderungen nicht erfüllt:
 mcrypt_module_missing#:#Bitte installieren/aktivieren sie das <b>mcrypt</b> Modul.
-url_not_connectable#:#Der Installation <b>%s</b> kann nicht erreicht werden. Bitte prüfen Sie den eingegebenen URL. 
+url_not_connectable#:#Der Installation <b>%s</b> kann nicht erreicht werden. Bitte prüfen Sie den eingegebenen URL.
+login_not_successfull#:#Leider hat der Single-Sign-On zu Roundcube nicht funktioniert.
+debug_mode#:#Debug-Modus
+debug_mode_info#:#Hier können Sie den Debug-Modus aktivieren. Das Plugin wird dann die Kommunikation mit Roundcube in die ILIAS-Logdatei schreiben.

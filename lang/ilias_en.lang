@@ -2,15 +2,18 @@
 enable#:#Enable
 enable_info#:#Here you can switch the activation status of this plugin. If some system requirements are not given, the plugin remains inactive.
 roundcube_inbox#:#Roundcube Inbox
-roundcube_settings#:#Roundcube Settings
+settings#:#Settings
 url#:#URL to your Roundcube installation
-url_info#:#Please enter the absolute HTTP path to your Roundcube installation (e.g.: http://www.ilias.de/roundcube)
+url_info#:#Please enter the absolute http path to your Roundcube installation (e.g.: http://www.ilias.de/round8cube). <span style="color:red">Currently the domain of the Roundcube installation must match your ILIAS installations' domain.</span> 
 auth_settings#:#Authentication Settings
 auth_settings_ilias#:#ILIAS Credentials
-auth_settings_ilias_info#:#If selected, your ILIAS login credentials (username and password) are used for the Roundcube authentication.
+auth_settings_ilias_info#:#If chosen, the respective ILIAS login credentials (username and password) are used for the Roundcube authentication.
 auth_with_udf#:#Used user defined field
-auth_with_udf_info#:#If selected, you can select one of the user defined fields which should be used for for the Roundcube authentication.
+auth_with_udf_info#:#If chosen, you can select one of the user defined fields which should be used for the Roundcube authentication. Please note: Do not delete the chosen field in the ILIAS user administration. Otherwise a single sign on to Roundcube will fail.
 auth_udf_field#:#User Defined Field
 precondition_error#:#Missing Preconditions:
 mcrypt_module_missing#:#Please install/enable the <b>mcrypt</b> module.
 url_not_connectable#:#ILIAS could not connect to <b>%s</b>. Please check the entered URL.
+login_not_successfull#:#Unfortunately you could not be logged in into the Roundcube web mail client.
+debug_mode#:#Debug Mode
+debug_mode_info#:#If enabled, the plugin will write the communication with Roundcube into the ILIAS log file.

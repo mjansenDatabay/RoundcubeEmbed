@@ -11,6 +11,11 @@ class ilRoundcubeEmbedPlugin extends ilUserInterfaceHookPlugin
 	protected static $iv_source = MCRYPT_DEV_RANDOM;
 
 	/**
+	 * @var ilSetting
+	 */
+	protected static $settings;
+
+	/**
 	 * Get Plugin Name. Must be same as in class name il<Name>Plugin
 	 * and must correspond to plugins subdirectory name.
 	 * Must be overwritten in plugin class of plugin
@@ -84,7 +89,7 @@ class ilRoundcubeEmbedPlugin extends ilUserInterfaceHookPlugin
 	}
 
 	/**
-	 * @param string url
+	 * @param string $url
 	 * @return bool
 	 */
 	public static function isRoundcubeConnectable($url)
@@ -119,5 +124,18 @@ class ilRoundcubeEmbedPlugin extends ilUserInterfaceHookPlugin
 			default:
 				return false;
 		}
+	}
+
+	/**
+ 	 * @return ilSetting
+	 */
+	public static function getSettings()
+	{
+		if(null === self::$settings)
+		{
+			self::$settings = new ilSetting('roundcubeembed');
+		}
+		
+		return self::$settings;
 	}
 }
