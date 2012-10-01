@@ -4,7 +4,7 @@ enable_info#:#Hier können Sie das Roundcube-Plugin aktivieren bzw. deaktivieren
 roundcube_inbox#:#Roundcube Posteingang 
 settings#:#Einstellungen
 url#:#URL zu Ihrer Roundcube-Installation
-url_info#:#Bitte geben Sie den absoluten HTTP-Pfad zu Ihrer Roundcube-Installation an (Beispiel: http://www.ilias.de/roundcube). <span style="color:red">Aktuell muss die Roundcube-Installation unter der selben Domain erreichbar sein wie Ihre ILIAS-Installation.</span>
+url_info#:#Bitte geben Sie den absoluten HTTP-Pfad zu Ihrer Roundcube-Installation an (Beispiel: http://www.ilias.de/roundcube).<p style="color:red">Aktuelle Beschränkung:<ul style="color:red"><li>Aktuell muss die Roundcube-Installation unter der selben Domain erreichbar sein wie Ihre ILIAS-Installation.</li><li>Die Einstellung <b>x_frame_options</b> muss auf <b>false</b> gesetzt werden</li><li>Die Einstellung <b>ip_check/check_ip</b> muss auf <b>false</b> gesetzt werden.</li></ul></p>
 auth_settings#:#Authentifizierung
 auth_settings_ilias#:#ILIAS Logindaten
 auth_settings_ilias_info#:#Falls gewählt, wird der jeweilige Benutzernamen und das Passwort eines ILIAS-Benutzers auch für die Roundcube-Authentifizierung genutzt.

@@ -4,7 +4,7 @@ enable_info#:#Here you can switch the activation status of this plugin. If some 
 roundcube_inbox#:#Roundcube Inbox
 settings#:#Settings
 url#:#URL to your Roundcube installation
-url_info#:#Please enter the absolute http path to your Roundcube installation (e.g.: http://www.ilias.de/round8cube). <span style="color:red">Currently the domain of the Roundcube installation must match your ILIAS installations' domain.</span> 
+url_info#:#Please enter the absolute http path to your Roundcube installation (e.g.: http://www.ilias.de/round8cube).<p style="color:red">Limitations: <ul style="color:red"><li>Currently the domain of the Roundcube installation must match your ILIAS installations' domain.</li><li>The <b>x_frame_options</b> setting has to be set to <b>false</b></li><li>The <b>ip_check/check_ip</b> setting has to be set to <b>false</b></li></ul></p> 
 auth_settings#:#Authentication Settings
 auth_settings_ilias#:#ILIAS Credentials
 auth_settings_ilias_info#:#If chosen, the respective ILIAS login credentials (username and password) are used for the Roundcube authentication.
