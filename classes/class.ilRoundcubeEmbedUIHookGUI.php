@@ -80,6 +80,15 @@ class ilRoundcubeEmbedUIHookGUI extends ilUIHookPluginGUI implements RoundcubeCo
 
 				if($client->isLoggedIn())
 				{
+					$tpl->addJavaScript("./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/RoundcubeEmbed/templates/rce.js");
+
+					require_once 'Services/jQuery/classes/class.iljQueryUtil.php';
+					iljQueryUtil::initjQuery();
+					iljQueryUtil::initjQueryUI();
+
+					$tpl->addCss("./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/RoundcubeEmbed/templates/jquery-ui-1.9.0.custom.min.css");
+					$tpl->addCss("./Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/RoundcubeEmbed/templates/rce.css");
+
 					$content_tpl = new ilTemplate($this->getPluginObject()->getDirectory() . '/templates/tpl.roundcube_embed.html', false, false);
 					$content_tpl->setVariable('URL', ilRoundcubeEmbedPlugin::getSettings()->get('url'));
 					return array('mode' => ilUIHookPluginGUI::REPLACE, 'html' => $content_tpl->get());
