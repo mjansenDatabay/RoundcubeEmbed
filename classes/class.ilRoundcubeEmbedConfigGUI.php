@@ -129,7 +129,7 @@ class ilRoundcubeEmbedConfigGUI extends ilPluginConfigGUI implements RoundcubeCo
 		$this->form->setValuesByArray($values);
 		if(!$status || !($connectable = ilRoundcubeEmbedPlugin::isRoundcubeConnectable($values['url'])))
 		{
-			if(!$connectable)
+			if(strlen($values['url']) && !$connectable)
 			{
 				ilUtil::sendFailure(sprintf($this->getPluginObject()->txt('url_not_connectable'), $values['url']));
 			}

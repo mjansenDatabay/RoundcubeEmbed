@@ -96,6 +96,11 @@ class ilRoundcubeEmbedPlugin extends ilUserInterfaceHookPlugin
 	{
 		require_once 'HTTP/Request.php';
 		require_once 'classes/class.ilProxySettings.php';
+		
+		if(!strlen($url))
+		{
+			return false;
+		}
 
 		if(ilProxySettings::_getInstance()->isActive())
 		{
