@@ -95,7 +95,14 @@ class ilRoundcubeEmbedPlugin extends ilUserInterfaceHookPlugin
 	public static function isRoundcubeConnectable($url)
 	{
 		require_once 'HTTP/Request.php';
-		require_once 'classes/class.ilProxySettings.php';
+		if(version_compare(ILIAS_VERSION_NUMERIC, '4.3.0', '>='))
+		{
+			require_once 'Services/Http/classes/class.ilProxySettings.php';
+		}
+		else
+		{
+			require_once 'classes/class.ilProxySettings.php';
+		}
 		
 		if(!strlen($url))
 		{
