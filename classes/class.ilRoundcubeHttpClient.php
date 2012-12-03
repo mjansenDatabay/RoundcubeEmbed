@@ -1,8 +1,7 @@
 <?php
 /* Copyright (c) 1998-2012 ILIAS open source, Extended GPL, see docs/LICENSE */
 
-require_once 'HTTP/Request.php';
-require_once 'classes/class.ilProxySettings.php';
+require_once 'HTTP/Request.php';;
 
 class ilRoundcubeHttpClient
 {
@@ -242,6 +241,15 @@ class ilRoundcubeHttpClient
 		 * @var $https ilHTTPS
 		 */
 		global $https;
+
+		if(version_compare(ILIAS_VERSION_NUMERIC, '4.3.0', '>='))
+		{
+			require_once 'Services/Http/classes/class.ilProxySettings.php';
+		}
+		else
+		{
+			require_once 'classes/class.ilProxySettings.php';
+		}
 
 		if(ilProxySettings::_getInstance()->isActive())
 		{
